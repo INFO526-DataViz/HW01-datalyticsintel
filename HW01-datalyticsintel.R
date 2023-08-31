@@ -4,7 +4,7 @@ author: "Antonio Escalante Jr"
 format: html
 toc: true
 ---
-
+  
 ## 1 - Road traffic accidents in Edinburgh
 #load librabries gglplot, here, tidyverse
 #install and then Load library dsbox packages called accidents
@@ -21,16 +21,8 @@ library(tidyverse)
 library(openintro)
 
 # ```{r label-me-2}
-ggplot(nyc_marathon)
 
-
-`{r label-me-1}`
-
-## 2 - NYC marathon winners
-
-```{r label-me-2}
-
-```
+# ```
 
 ## 3 - US counties
 
