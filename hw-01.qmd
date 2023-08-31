@@ -1,0 +1,26 @@
+---
+title: "HW 01"
+author: "INSERT YOUR NAME HERE"
+format: html
+toc: true
+---
+
+## 1 - Road traffic accidents in Edinburgh
+
+```{r label-me-1}
+
+```
+
+## 2 - NYC marathon winners
+
+```{r label-me-2}
+
+```
+
+## 3 - US counties
+
+
+## 4 - Rental apartments in SF
+
+
+## 5 - Napoleon’s march.
