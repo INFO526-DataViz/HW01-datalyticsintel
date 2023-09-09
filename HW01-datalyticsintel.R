@@ -1,22 +1,54 @@
----
-title: "HW 01"
-author: "Antonio Escalante Jr"
-format: html
-toc: true
----
+----
+# title: Homework 01 INFO 526
+# Author: Antonio Escalante Jr
+#> Date: 2023- 08-30 
+#> Description: Homework 01 from Github 
+----
+ 
   
-## 1 - Road traffic accidents in Edinburgh
-#load librabries gglplot, here, tidyverse
-#install and then Load library dsbox packages called accidents
-install.packages("accidents")
-# install.packages("dsbox")
-install.packages("dsbox")
- library(tidyverse)
- # library(accidents)
-  
-  `{r label-me-1}`
+#### 1 - Road traffic accidents in Edinburgh----
+#   Road traffic accidents in Edinburgh. Next we’ll look at traffic accidents in Edinburgh. 
+# The data are made available online by the UK Government. It covers all recorded accidents 
+# in Edinburgh in 2018 and some of the variables were modified for the purposes of this assignment.
+# The data can be found in the dsbox package, and it’s called accidents. You can find out
+# more about the dataset by inspecting its documentation with ?accidents and you can also find 
+# this information here. Recreate the following plot, and interpret in context of the data.
 
-## 2 - NYC marathon winners
+#### Install & load packages
+#load libraries ggplot, here, tidyverse - adding pacman from live lecture 
+#install and then Load library dsbox packages called accidents
+install.packages("pacman")
+
+
+#Accidents dataset is within dsbox package
+# install.packages("dsbox")
+# install.packages("dsbox")
+#install devtools per dsbox website
+# install.packages("devtools")
+#install github code into console to get a working dsbox installed
+#check alternative versions 
+
+library(ggpubr) 
+library(tidyverse)
+library(glue)
+library(scales)
+library(lubridate)
+#For any plots below
+# Global ggplotheme
+# theme_set(theme_pubclean(base_size = 14))
+theme_set(theme_minimal(base_size = 14))
+
+
+library(ggplot2)
+
+ggplot(accidents, aes(x = day_of_week, fill = severity)) +
+  geom_density()
+
+
+
+
+
+## 2 - NYC marathon winners----
   
 # Install openintro
 install.packages("openintro")
@@ -27,13 +59,14 @@ library(ggplot2)
 # all runners in the dataset. What features of the distribution are apparent in the histogram 
 # and not the box plot? What features are apparent in the box plot but not in the histogram?
 # ```{r label-me-2}
-
-ggplot(nyc_marathon, aes(x = time)) +
+#plot histogram
+ggplot(nyc_marathon, aes(x = time,)) +
   geom_histogram() +
   labs(title = "Histogram of NYC Marathon Times", x = "Time (minutes)", y = "Number of Runners") 
-  
 
-
+#Now plot boxplot  
+ggplot(nyc_marathon, aes(x = time)) +
+geom_boxplot()
 
   
   
