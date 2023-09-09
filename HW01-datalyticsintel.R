@@ -35,14 +35,18 @@ library(scales)
 library(lubridate)
 #For any plots below
 # Global ggplotheme
-# theme_set(theme_pubclean(base_size = 14))
-theme_set(theme_minimal(base_size = 14))
+# theme_set(theme_pubclean(base_size = 11))
+theme_set(theme_minimal(base_size = 11))
 
 
 library(ggplot2)
 
 ggplot(accidents, aes(x = day_of_week, fill = severity)) +
-  geom_density()
+  geom_density(alpha = 0.5) +
+  labs(title = "Number of acciedent throughout the day",
+       x = "Time of day",
+       y = "Density"
+  )
 
 
 
@@ -60,13 +64,20 @@ library(ggplot2)
 # and not the box plot? What features are apparent in the box plot but not in the histogram?
 # ```{r label-me-2}
 #plot histogram
-ggplot(nyc_marathon, aes(x = time,)) +
+ggplot(nyc_marathon, aes(x = time)) +
   geom_histogram() +
-  labs(title = "Histogram of NYC Marathon Times", x = "Time (minutes)", y = "Number of Runners") 
+  labs(title = "Histogram of NYC Marathon Times", 
+       x = "Time in minutes", 
+       y = "Number of Runners"
+       ) 
 
 #Now plot boxplot  
 ggplot(nyc_marathon, aes(x = time)) +
-geom_boxplot()
+geom_boxplot() +
+  labs(title = "Histogram of NYC Marathon Times", 
+       x = "Time in minutes", 
+       y = "Number of Runners"
+  ) 
 
   
   
