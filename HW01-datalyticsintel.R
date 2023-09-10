@@ -123,14 +123,35 @@ ggplot(nyc_marathon, aes(x = year)) +
   geom_point(aes(x = median_edu, y = median_hh_income)) +
   geom_boxplot(aes(x = smoking_ban, y = pop2017))
 
+# It creates agraph where the x-axis is the education attain and the y-axis is the median household income levels. It does the job 
+# getting the correlation of degree to earnings
 
 # b. Which of the following two plots makes it easier to compare poverty levels (poverty) 
 # across people from different median education levels (median_edu)? What does this say about
 # when to place a faceting variable across rows or columns?
   
-  ggplot(county %>% filter(!is.na(median_edu))) + 
+ggplot(county |> filter(!is.na(median_edu))) + 
   geom_point(aes(x = homeownership, y = poverty)) + 
   facet_grid(median_edu ~ .)
+
+ggplot(county %>% filter(!is.na(median_edu))) + 
+  geom_point(aes(x = homeownership, y = poverty)) + 
+  facet_grid(. ~ median_edu)
+
+# High school diploma and some college are easier to see when using the faceting. Faceting makes it easier 
+# to compare with the data is too clustered together. The second one seems easier to read as it shares infoamtion
+# in a smaller area 
+
+
+
+# c. Recreate the R code necessary to generate the following graphs. Note that wherever a categorical variable is used in the plot, it’s metro.
+
+ggplot(county |> filter(!is.na(homeownership))) + 
+  geom_point(aes(x = homeownership, y = poverty)) + 
+  facet_grid(. ~ homeownership)
+
+
+
 
 
 
