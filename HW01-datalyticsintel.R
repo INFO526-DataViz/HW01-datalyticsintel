@@ -17,7 +17,7 @@
 #### Install & load packages
 #load libraries ggplot, here, tidyverse - adding pacman from live lecture 
 #install and then Load library dsbox packages called accidents
-install.packages("pacman")
+# install.packages("pacman")
 
 
 #Accidents dataset is within dsbox package
@@ -62,7 +62,7 @@ library(ggplot2)
 # a. Create a histogram and a box plot of the distribution of marathon times of 
 # all runners in the dataset. What features of the distribution are apparent in the histogram 
 # and not the box plot? What features are apparent in the box plot but not in the histogram?
-# ```{r label-me-2}
+# 
 #plot histogram
 ggplot(nyc_marathon, aes(x = time)) +
   geom_histogram() +
@@ -78,10 +78,29 @@ geom_boxplot() +
        x = "Time in minutes", 
        y = "Number of Runners"
   ) 
+# Features that are apparent in the boxplot are the outliers that hav more time and space further out on the 
+# graph. 
+  
+# b. Create a side-by-side box plots of marathon times for men and women. Use different colors for 
+# the each of the box plots – do not use the default colors, but instead manually define them 
+# (you can choose any two colors you want). Based on the plots you made, compare the distribution 
+# of marathon times for men and women.
 
-  
-  
-  
+ggplot(nyc_marathon, aes(division)) +
+  geom_boxplot()+
+   # scale_fill_manual( 
+   #    "Men" = "orange",
+   #    "Women" = "pink",
+      # )+
+  labs(title = "Marathon Times for Men and Women",
+       x = "Gender",
+       y = "Marathon Time (hours)"
+       ) 
+ 
+
+
+
+
 # ```
 
 ## 3 - US counties
