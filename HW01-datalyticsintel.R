@@ -88,22 +88,52 @@ geom_boxplot() +
 
 ggplot(nyc_marathon, aes(division)) +
   geom_boxplot()+
-   # scale_fill_manual( 
-   #    "Men" = "orange",
-   #    "Women" = "pink",
-      # )+
+  scale_fill_manual(values = c("Male" = "blue4",
+                               "Female" = "pink")
+                    )+
   labs(title = "Marathon Times for Men and Women",
        x = "Gender",
        y = "Marathon Time (hours)"
        ) 
- 
+# What information in the above plot is redundant? Redo the plot avoiding this redundancy. 
+# How does this update change the data-to-ink ratio?
+  
+# d. Visualize the marathon times of men and women over the years. As is usual with time series 
+# plot, year should go on the x-axis.
+# Use different colors and shapes to represent the times for men and women. Make sure 
+# your colors match those in the previous part. Once you have your plot,
+# describe what is visible in this plot but not in the others.
+
+ggplot(nyc_marathon, aes(x = year)) +
+  geom_histogram()
+  
 
 
 
 
-# ```
 
-## 3 - US counties
+## 3 - US counties----
+# US counties. The following questions use the county dataset in the openintro package. 
+# You can find out more about the dataset by inspecting its documentation with ?county 
+# and you can also find this information here.
+
+# a. What does the following code do? Does it work? Does it make sense? Why/why not?
+  
+  ggplot(county) +
+  geom_point(aes(x = median_edu, y = median_hh_income)) +
+  geom_boxplot(aes(x = smoking_ban, y = pop2017))
+
+
+# b. Which of the following two plots makes it easier to compare poverty levels (poverty) 
+# across people from different median education levels (median_edu)? What does this say about
+# when to place a faceting variable across rows or columns?
+  
+  ggplot(county %>% filter(!is.na(median_edu))) + 
+  geom_point(aes(x = homeownership, y = poverty)) + 
+  facet_grid(median_edu ~ .)
+
+
+
 
 ## 4 - Rental apartments in SF
 
