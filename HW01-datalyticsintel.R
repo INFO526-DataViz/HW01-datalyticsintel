@@ -134,7 +134,7 @@ ggplot(county |> filter(!is.na(median_edu))) +
   geom_point(aes(x = homeownership, y = poverty)) + 
   facet_grid(median_edu ~ .)
 
-ggplot(county %>% filter(!is.na(median_edu))) + 
+ggplot(county |> filter(!is.na(median_edu))) + 
   geom_point(aes(x = homeownership, y = poverty)) + 
   facet_grid(. ~ median_edu)
 
@@ -146,11 +146,13 @@ ggplot(county %>% filter(!is.na(median_edu))) +
 
 
 # c. Recreate the R code necessary to generate the following graphs. Note that wherever a categorical variable is used in the plot, it’s metro.
-
-ggplot(county |> filter(!is.na(homeownership))) + 
-  geom_point(aes(x = homeownership, y = poverty)) + 
-  facet_grid(. ~ homeownership)
-
+library(openintro)
+ggplot(country, aes(x = homeownership, y = poverty)) +
+  geom_point(aes(color = metro), alpha = 0.6) +
+  facet_wrap(~ metro) +
+  labs(title = "Comparison of Price vs. Area across Metro categories",
+       x = "Area",
+       y = "Price") 
 
 
 
@@ -169,10 +171,22 @@ ggplot(county |> filter(!is.na(homeownership))) +
 # correct answer! In your answer, include a brief description of why you made the choices you made as well as 
 # an interpretation of the findings of how rental prices vary over time and neighborhoods in San Francisco.
 
+rent <- read.csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-07-05/rent.csv")
+filtered_rent <- rent |>
+  filter(city == "san francisco")+
+  ggplot(aes(x = nhood, 
+             y = price, 
+             group = nhood, 
+             color = years)) +
+  geom_area()+
+    labs(title = "Rentals in San Francisco",
+         x = "Area",
+         y = "Price")
+
+# structure(rent)
 
 
-
-
+ 
 
 
 ## 5 - Napoleon's march.----
@@ -200,6 +214,8 @@ ggplot(county |> filter(!is.na(homeownership))) +
 # change colors, annotations, labels, etc. This change should be made to make the plot more like the original in some way.
 # You need to explicitly call out what change you made and why you made it.
 
+library(tidyverse)
+napoleon_data <- read_rds("napoleon.rds")
 
 
 
