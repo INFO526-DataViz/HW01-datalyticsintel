@@ -217,6 +217,6 @@ filtered_rent <- rent |>
 library(tidyverse)
 napoleon_data <- read_rds("napoleon.rds")
 
-
+structure(napoleon_data)
 
 
