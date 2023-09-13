@@ -195,7 +195,7 @@ ggplot(county) +
 
 rent <- read.csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-07-05/rent.csv")
 filtered_rent <- rent |>
-  filter(city == "san francisco")+
+  filter(city == "san francisco") +
   ggplot(aes(x = nhood, 
              y = price, 
              group = nhood, 
@@ -220,9 +220,11 @@ filtered_rent <- rent |>
 # articulately in your response. I’ll be the first to say that if you google “Napoleon’s march in ggplot2”, you’ll find 
 # a bunch of blog posts, tutorials, etc. that walk you through how to recreate this visualization with ggplot2. 
 # So you might be thinking, “why am I being asked to copy something off the internet for my homework?” Well, this is 
-# an exercise in (1) working with web resources and citing them properly, (2) understanding someone else’s ggplot2 code 
-# and reproducing their work, (3) describing what that code does in your own words, and finally (4) putting some final 
-# touches to make the final product your own. Some more guidelines below:
+# an exercise in 
+# (1) working with web resources and citing them properly, 
+# (2) understanding someone else’s ggplot2 code and reproducing their work, 
+# (3) describing what that code does in your own words, and finally 
+# (4) putting some final touches to make the final product your own. Some more guidelines below:
   
 #   You should make sure your response properly cites all of the resources you use. I’m defining “use” to include 
 # “browse, read, get inspired by, or directly borrow snippets of code from”. You don’t need to worry about formal citations,
@@ -236,9 +238,37 @@ filtered_rent <- rent |>
 # change colors, annotations, labels, etc. This change should be made to make the plot more like the original in some way.
 # You need to explicitly call out what change you made and why you made it.
 
-library(tidyverse)
-napoleon_data <- read_rds("napoleon.rds")
+#1) citations
+# http://vita.had.co.nz/papers/layered-grammar.pdf
+# https://www.datavis.ca/gallery/re-minard.php
+# https://www.andrewheiss.com/blog/2017/08/10/exploring-minards-1812-plot-with-ggplot2/
+# http://euclid.psych.yorku.ca/www/psy6135/tutorials/Minard.html
 
+library(tidyverse)
+library(ggplot2)
+library(scales)        # additional formatting for scales
+library(grid)          # combining plots
+library(gridExtra)     # combining plots
+library(dplyr)         # tidy data manipulations
+napoleon_data <- read_rds("napoleon.rds")
+#Checking Structure of data 
 structure(napoleon_data)
 
+#Using the code from the last cited website and transforming it with my data info 
 
+breaks <- c(1, 2, 3) * 10^5 
+ggplot(napoleon_data, aes(long, lat)) +
+  geom_path(aes(size = survivors, colour = direction, group = group),
+            lineend="round") +
+  scale_size("Survivors", range = c(1,10), #c(0.5, 15),
+             breaks=breaks, labels=scales::comma(breaks)) +
+  scale_color_manual("Direction", 
+                     values = c("#E8CBAB", "#1F1A1B"), 
+                     labels=c("Advance", "Retreat"))
+
+plot_troops <- last_plot()
+
+plot_troops +   
+  geom_point(data = napoleon_data) +
+  geom_text(data = napoleon_data, aes(label = city), vjust = 1.5) 
+                     
