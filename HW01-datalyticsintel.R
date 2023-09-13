@@ -156,7 +156,7 @@ library(openintro)
 
 ggplot(county) + 
   geom_point(aes(x = homeownership, y = poverty)) + 
-  geom_smooth(data = subset(county), 
+  geom_smooth(orientation = "county", 
               aes(x = homeownership, y = poverty), 
               method = "lm", se = FALSE, color = "blue") +
   facet_wrap(metro ~ .)  +
@@ -166,15 +166,15 @@ ggplot(county) +
 
 
 
-ggplot(county) +
-  geom_point(aes(x = homeownership, 
-                 y = poverty, 
-                 color = metro)
-             ) |>
-  facet_wrap(~ metro) +
-  labs(title = "Comparison of Price vs. Area across Metro categories",
-       x = "Area",
-       y = "Price") 
+# ggplot(county) + #Ignore this it was troubleshooting some code
+#   geom_point(aes(x = homeownership, 
+#                  y = poverty, 
+#                  color = metro)
+#              ) |>
+#   facet_wrap(~ metro) +
+#   labs(title = "Comparison of Price vs. Area across Metro categories",
+#        x = "Area",
+#        y = "Price") 
 
 
 
@@ -212,8 +212,8 @@ filtered_rent <- rent |>
 
 
 ## 5 - Napoleon's march.----
-# Napoleon’s march. The instructions for this exercise are simple: recreate the Napoleon’s march plot
-# by Charles John Minard in ggplot2. The data is provided as a list, saved as napoleon.rds. Read it in using read_rds().
+# Napoleon’s maNapoleon’s march plot
+# by Charles John Minard in ggplot2. The data is provrch. The instructions for this exercise are simple: recreate the ided as a list, saved as napoleon.rds. Read it in using read_rds().
 # This object has three elements: cities, temperatures, and troops. Each of these is a data frame, and the three 
 # of them combined contain all of the data you need to recreate the visualization. Your goal isn’t to create 
 # an exact replica of the original plot, but to get as close to it as you can using code you understand and can describe 
