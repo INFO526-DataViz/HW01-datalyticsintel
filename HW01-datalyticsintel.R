@@ -39,7 +39,12 @@ library(lubridate)
 theme_set(theme_minimal(base_size = 11))
 
 
-library(ggplot2)
+# library(ggplot2) #Very cool add on package I found that could be useful for the future 
+# install.packages("devtools")
+# library(devtools)
+# install_github("kassambara/easyGgplot2")
+
+
 
 ggplot(accidents, aes(x = day_of_week, fill = severity)) +
   geom_density(alpha = 0.5) +
@@ -140,15 +145,32 @@ ggplot(county |> filter(!is.na(median_edu))) +
 
 
 # High school diploma and some college are easier to see when using the faceting. Faceting makes it easier 
-# to compare with the data is too clustered together. The second one seems easier to read as it shares infoamtion
+# to compare with the data is too clustered together. The second one seems easier to read as it shares inforamtion
 # in a smaller area 
 
 
 
 # c. Recreate the R code necessary to generate the following graphs. Note that wherever a categorical variable is used in the plot, it’s metro.
 library(openintro)
-ggplot(country, aes(x = homeownership, y = poverty)) +
-  geom_point(aes(color = metro), alpha = 0.6) +
+
+
+ggplot(county) + 
+  geom_point(aes(x = homeownership, y = poverty)) + 
+  geom_smooth(data = subset(county), 
+              aes(x = homeownership, y = poverty), 
+              method = "lm", se = FALSE, color = "blue") +
+  facet_wrap(metro ~ .)  +
+  labs(title = "Plot A and Plot B",
+     x = "homeownership",
+     y = "poverty")
+
+
+
+ggplot(county) +
+  geom_point(aes(x = homeownership, 
+                 y = poverty, 
+                 color = metro)
+             ) |>
   facet_wrap(~ metro) +
   labs(title = "Comparison of Price vs. Area across Metro categories",
        x = "Area",
