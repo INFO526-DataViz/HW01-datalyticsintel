@@ -1,7 +1,9 @@
 ---
 title: "HW 01"
 author: "Antonio Escalante Jr"
-format: html
+format: 
+  html:
+    embed-resources: true
 toc: true
 ---
 
