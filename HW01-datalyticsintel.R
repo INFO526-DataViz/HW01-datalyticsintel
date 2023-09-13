@@ -252,27 +252,41 @@ library(gridExtra)     # combining plots
 library(dplyr)         # tidy data manipulations
 napoleon_data <- read_rds("napoleon.rds")
 #Checking Structure of data 
+
 structure(napoleon_data)
 
+install.packages("broom")
+
+fortify(napoleon_data)
 #Using the code from the last cited website and transforming it with my data info 
-# I keep getting fortify error 
 
 
+#Attempt
 
-
-breaks <- c(1, 2, 3) * 10^5 
+breaks <- c(1, 2, 3) * 10^5
 ggplot(napoleon_data, aes(long, lat)) +
   geom_path(aes(size = survivors, colour = direction, group = group),
             lineend="round") +
   scale_size("Survivors", range = c(1,10), #c(0.5, 15),
              breaks=breaks, labels=scales::comma(breaks)) +
-  scale_color_manual("Direction", 
-                     values = c("#E8CBAB", "#1F1A1B"), 
+  scale_color_manual("Direction",
+                     values = c("#E8CBAB", "#1F1A1B"),
                      labels=c("Advance", "Retreat"))
 
 plot_troops <- last_plot()
 
-plot_troops +   
+plot_troops +
   geom_point(data = napoleon_data) +
-  geom_text(data = napoleon_data, aes(label = city), vjust = 1.5) 
-                     
+  geom_text(data = napoleon_data, aes(label = city), vjust = 1.5)
+                
+
+
+
+
+
+
+
+
+
+
+     
