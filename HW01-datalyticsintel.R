@@ -255,6 +255,10 @@ napoleon_data <- read_rds("napoleon.rds")
 structure(napoleon_data)
 
 #Using the code from the last cited website and transforming it with my data info 
+# I keep getting fortify error 
+
+
+
 
 breaks <- c(1, 2, 3) * 10^5 
 ggplot(napoleon_data, aes(long, lat)) +
