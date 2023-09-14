@@ -46,12 +46,20 @@ theme_set(theme_minimal(base_size = 11))
 
 
 
-ggplot(accidents, aes(x = day_of_week, fill = severity)) +
+ggplot(accidents, aes(x = time, fill = severity)) +
   geom_density(alpha = 0.5) +
   labs(title = "Number of acciedent throughout the day",
        x = "Time of day",
        y = "Density"
   )
+  facet_wrap( ggplot(accidents, aes(x = time, fill = severity)) +
+  geom_density(alpha = 0.5) +
+    filter(severity, drop = "fatality"))+
+  labs(title = "Number of acciedent throughout the day",
+       x = "Time of day",
+       y = "Density"
+       )
+  
 
 
 
@@ -264,7 +272,7 @@ fortify(napoleon_data)
 #Attempt
 
 breaks <- c(1, 2, 3) * 10^5
-ggplot(napoleon_data, aes(long, lat)) +
+ggplot(napoleon_data[["troops"]], aes(long, lat)) +
   geom_path(aes(size = survivors, colour = direction, group = group),
             lineend="round") +
   scale_size("Survivors", range = c(1,10), #c(0.5, 15),
