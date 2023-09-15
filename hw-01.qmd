@@ -155,6 +155,76 @@ ggplot(nyc_marathon, aes(x = year)) +
 
 ## 3 - US counties
 
+```{r}
+## 3 - US counties----
+# US counties. The following questions use the county dataset in the openintro package. 
+# You can find out more about the dataset by inspecting its documentation with ?county 
+# and you can also find this information here.
+
+# a. What does the following code do? Does it work? Does it make sense? Why/why not?
+  
+  ggplot(county) +
+  geom_point(aes(x = median_edu, y = median_hh_income)) +
+  geom_boxplot(aes(x = smoking_ban, y = pop2017))
+
+# It creates agraph where the x-axis is the education attain and the y-axis is the median household income levels. It does the job 
+# getting the correlation of degree to earnings
+
+# b. Which of the following two plots makes it easier to compare poverty levels (poverty) 
+# across people from different median education levels (median_edu)? What does this say about
+# when to place a faceting variable across rows or columns?
+  
+ggplot(county |> filter(!is.na(median_edu))) + 
+  geom_point(aes(x = homeownership, y = poverty)) + 
+  facet_grid(median_edu ~ .)
+
+ggplot(county |> filter(!is.na(median_edu))) + 
+  geom_point(aes(x = homeownership, y = poverty)) + 
+  facet_grid(. ~ median_edu)
+
+
+# High school diploma and some college are easier to see when using the faceting. Faceting makes it easier 
+# to compare with the data is too clustered together. The second one seems easier to read as it shares inforamtion
+# in a smaller area 
+
+
+
+# c. Recreate the R code necessary to generate the following graphs. Note that wherever a categorical variable is used in the plot, it’s metro.
+library(openintro)
+
+
+ggplot(county) + 
+  geom_point(aes(x = homeownership, y = poverty)) + 
+  geom_smooth(orientation = "county", 
+              aes(x = homeownership, y = poverty), 
+              method = "lm", se = FALSE, color = "blue") +
+  facet_wrap(metro ~ .)  +
+  labs(title = "Plot A and Plot B",
+     x = "homeownership",
+     y = "poverty")
+
+
+
+# ggplot(county) + #Ignore this it was troubleshooting some code
+#   geom_point(aes(x = homeownership, 
+#                  y = poverty, 
+#                  color = metro)
+#              ) |>
+#   facet_wrap(~ metro) +
+#   labs(title = "Comparison of Price vs. Area across Metro categories",
+#        x = "Area",
+#        y = "Price") 
+
+
+
+
+
+```
+
+
+
+
+
 
 ## 4 - Rental apartments in SF
 
