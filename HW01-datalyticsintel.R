@@ -27,14 +27,16 @@
 # install.packages("devtools")
 #install github code into console to get a working dsbox installed
 #check alternative versions 
+# install.packages("gridExtra")
+
 
 library(ggpubr) 
 library(tidyverse)
 library(glue)
 library(scales)
 library(lubridate)
-
-gridExtra::
+library(gridExtra)
+# gridExtra::
 #For any plots below
 # Global ggplotheme
 # theme_set(theme_pubclean(base_size = 11))
@@ -55,7 +57,13 @@ p1 <- ggplot(accidents, aes(x = time, fill = severity)) +
        y = "Density"
   )
   
-p2 <- p1 <- ggplot(accidents, aes(x = time, fill = severity)) +
+# This should take out fatality
+accidents <- as.data.frame(accidents)
+x <- accidents
+x <- x[!grepl('Fatal', x$severity),]
+
+
+p2 <- ggplot(x, aes(x = time, fill = severity)) +
   geom_density(alpha = 0.5) +
   labs(title = "Number of acciedent throughout the day",
        x = "Time of day",
@@ -63,6 +71,12 @@ p2 <- p1 <- ggplot(accidents, aes(x = time, fill = severity)) +
   )
 
 
+
+#I did grid arrange as faceting wasn't working 
+grid.arrange(p1, p2, nrow =2)
+
+# although in the graph example in the homework prompt I am not sure why Serious and Slight 
+# do not look the same. As in the slopes are different from the top and bottom graphs
 
 
 ## 2 - NYC marathon winners----
