@@ -263,3 +263,83 @@ filtered_rent <- rent |>
 
 
 ## 5 - Napoleon’s march.
+```{r}
+## 5 - Napoleon's march.----
+# Napoleon’s maNapoleon’s march plot
+# by Charles John Minard in ggplot2. The data is provrch. The instructions for this exercise are simple: recreate the ided as a list, saved as napoleon.rds. Read it in using read_rds().
+# This object has three elements: cities, temperatures, and troops. Each of these is a data frame, and the three 
+# of them combined contain all of the data you need to recreate the visualization. Your goal isn’t to create 
+# an exact replica of the original plot, but to get as close to it as you can using code you understand and can describe 
+# articulately in your response. I’ll be the first to say that if you google “Napoleon’s march in ggplot2”, you’ll find 
+# a bunch of blog posts, tutorials, etc. that walk you through how to recreate this visualization with ggplot2. 
+# So you might be thinking, “why am I being asked to copy something off the internet for my homework?” Well, this is 
+# an exercise in 
+# (1) working with web resources and citing them properly, 
+# (2) understanding someone else’s ggplot2 code and reproducing their work, 
+# (3) describing what that code does in your own words, and finally 
+# (4) putting some final touches to make the final product your own. Some more guidelines below:
+  
+#   You should make sure your response properly cites all of the resources you use. I’m defining “use” to include 
+# “browse, read, get inspired by, or directly borrow snippets of code from”. You don’t need to worry about formal citations,
+# it’s okay to make a list with links to your resources and provide a brief summary of how you used each one.
+# For this exercise, you’re asked to describe what your code does (instead of interpreting the visualization, 
+# since we already did that in class). If you write the code, it should be straightforward for you to describe it. 
+# If you borrow any code from outside resources, you need to understand what that code does, and describe it, in your own 
+# words. (This is important, you’re allowed to use found code, but you are not allowed to copy someone’s blog post 
+#         or tutorial as your description of their code.)
+# Finally, you should personalize the visualization with your own touch. You can do this in a myriad of ways, e.g.,
+# change colors, annotations, labels, etc. This change should be made to make the plot more like the original in some way.
+# You need to explicitly call out what change you made and why you made it.
+
+#1) citations
+# http://vita.had.co.nz/papers/layered-grammar.pdf
+# https://www.datavis.ca/gallery/re-minard.php
+# https://www.andrewheiss.com/blog/2017/08/10/exploring-minards-1812-plot-with-ggplot2/
+# http://euclid.psych.yorku.ca/www/psy6135/tutorials/Minard.html
+
+library(tidyverse)
+library(ggplot2)
+library(scales)        # additional formatting for scales
+library(grid)          # combining plots
+library(gridExtra)     # combining plots
+library(dplyr)         # tidy data manipulations
+napoleon_data <- read_rds("napoleon.rds")
+#Checking Structure of data 
+ as.data.frame(napoleon_data)
+structure(napoleon_data)
+
+
+
+
+#Using the code from the last cited website and transforming it with my data info 
+
+
+#Attempt
+
+breaks <- c(1, 2, 3) * 10^5
+ggplot(napoleon_data[["troops"]], aes(long, lat)) +
+  geom_path(aes(size = survivors, colour = direction, group = group),
+            lineend="round") +
+  scale_size("Survivors", range = c(1,10), #c(0.5, 15),
+             breaks=breaks, labels=scales::comma(breaks)) +
+  scale_color_manual("Direction",
+                     values = c("#6636f5", "#7a0012"),
+                     labels=c("Advance", "Retreat"))
+
+#turn tibble into data frame so I don't get an error message 
+# The changes I made to the snip of code I got from http://euclid.psych.yorku.ca/www/psy6135/tutorials/Minard.html
+# was the colors as well as how I retreive the specfic data so the code would function. 
+# Since the data from the website was configured differently into separate parts, as opposed to 
+# how the data we were given were all together, I had to use indexing to go into the data and select
+# the specific coloumn that I wanted to use. I am still so new at using R, and the fact I didn't use it 
+# regularly over the summer, I forgot alot of the trick I picked up from my last data class. Although 
+# I was never taught any of the specific grammar of R. In that class we were given all the code in markdown 
+# and has to simily duplicate it. So going in blind like this is extrememly hard and time consuming when 
+# I am plugging and checking. I've learned so much in this class already through many stressful night and 
+# I know I will continue to learn. I just have to keep trying different ways to make the code work. 
+
+
+```
+
+
+
