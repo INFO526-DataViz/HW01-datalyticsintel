@@ -91,6 +91,66 @@ grid.arrange(p1, p2, nrow =2)
 
 ```{r label-me-2}
 
+# Install openintro
+install.packages("openintro")
+# load library openintro
+library(openintro)
+library(ggplot2)
+# a. Create a histogram and a box plot of the distribution of marathon times of 
+# all runners in the dataset. What features of the distribution are apparent in the histogram 
+# and not the box plot? What features are apparent in the box plot but not in the histogram?
+# 
+#plot histogram
+ggplot(nyc_marathon, aes(x = time)) +
+  geom_histogram() +
+  labs(title = "Histogram of NYC Marathon Times", 
+       x = "Time in minutes", 
+       y = "Number of Runners"
+       ) 
+
+#Now plot boxplot  
+ggplot(nyc_marathon, aes(x = time)) +
+geom_boxplot() +
+  labs(title = "Histogram of NYC Marathon Times", 
+       x = "Time in minutes", 
+       y = "Number of Runners"
+  ) 
+# Features that are apparent in the boxplot are the outliers that hav more time and space further out on the 
+# graph. 
+  
+# b. Create a side-by-side box plots of marathon times for men and women. Use different colors for 
+# the each of the box plots – do not use the default colors, but instead manually define them 
+# (you can choose any two colors you want). Based on the plots you made, compare the distribution 
+# of marathon times for men and women.
+
+ggplot(nyc_marathon, aes(division)) +
+  geom_boxplot()+
+  scale_fill_manual(values = c("Male" = "blue4",
+                               "Female" = "pink")
+                    )+
+  labs(title = "Marathon Times for Men and Women",
+       x = "Gender",
+       y = "Marathon Time (hours)"
+       ) 
+# What information in the above plot is redundant? Redo the plot avoiding this redundancy. 
+# How does this update change the data-to-ink ratio?
+  
+# d. Visualize the marathon times of men and women over the years. As is usual with time series 
+# plot, year should go on the x-axis.
+# Use different colors and shapes to represent the times for men and women. Make sure 
+# your colors match those in the previous part. Once you have your plot,
+# describe what is visible in this plot but not in the others.
+
+ggplot(nyc_marathon, aes(x = year)) +
+  geom_histogram()
+  
+
+
+
+
+
+
+
 ```
 
 ## 3 - US counties
