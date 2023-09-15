@@ -2,12 +2,13 @@
 name: 'HW 1 Grading '
 about: 'Feedback '
 title: 'Homework 1 Feedback '
-labels: ''
+labels: '0%'
 assignees: ''
 
 ---
 
 ---
+PLEASE PUT YOUR R SCRIPT INTO THE HW-01.RMD !!!! 
 name: Feedback
 about: Feedback for assignment
 title: Feedback
@@ -16,7 +17,7 @@ assignees: ''
 
 ---
 
-Dear [STUDENT GITHUB NAME] -- Below is the feedback for your assignment. Please review carefully, and stop by office hours if you have any questions about the feedback.
+Dear [datalyticsintel] -- Below is the feedback for your assignment. Please review carefully, and stop by office hours if you have any questions about the feedback.
 
 ---
 
