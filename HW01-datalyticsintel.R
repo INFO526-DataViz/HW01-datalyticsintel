@@ -21,15 +21,15 @@
 
 
 #Accidents dataset is within dsbox package
-# install.packages("dsbox")
+install.packages("dsbox")
 # install.packages("dsbox")
 #install devtools per dsbox website
-# install.packages("devtools")
+ install.packages("devtools")
 #install github code into console to get a working dsbox installed
 #check alternative versions 
 # install.packages("gridExtra")
 
-
+library(dsbox)
 library(ggpubr) 
 library(tidyverse)
 library(glue)
@@ -44,9 +44,9 @@ theme_set(theme_minimal(base_size = 11))
 
 
 # library(ggplot2) #Very cool add on package I found that could be useful for the future 
-# install.packages("devtools")
-# library(devtools)
-# install_github("kassambara/easyGgplot2")
+ install.packages("devtools")
+ library(devtools)
+ install_github("kassambara/easyGgplot2")
 
 
 
