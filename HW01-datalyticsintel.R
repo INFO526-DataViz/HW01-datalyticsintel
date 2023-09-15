@@ -33,6 +33,8 @@ library(tidyverse)
 library(glue)
 library(scales)
 library(lubridate)
+
+gridExtra::
 #For any plots below
 # Global ggplotheme
 # theme_set(theme_pubclean(base_size = 11))
@@ -46,21 +48,19 @@ theme_set(theme_minimal(base_size = 11))
 
 
 
-ggplot(accidents, aes(x = time, fill = severity)) +
+p1 <- ggplot(accidents, aes(x = time, fill = severity)) +
   geom_density(alpha = 0.5) +
   labs(title = "Number of acciedent throughout the day",
        x = "Time of day",
        y = "Density"
   )
-  facet_wrap( ggplot(accidents, aes(x = time, fill = severity)) +
+  
+p2 <- p1 <- ggplot(accidents, aes(x = time, fill = severity)) +
   geom_density(alpha = 0.5) +
-    filter(severity, drop = "fatality"))+
   labs(title = "Number of acciedent throughout the day",
        x = "Time of day",
        y = "Density"
-       )
-  
-
+  )
 
 
 
@@ -260,12 +260,12 @@ library(gridExtra)     # combining plots
 library(dplyr)         # tidy data manipulations
 napoleon_data <- read_rds("napoleon.rds")
 #Checking Structure of data 
-
+ as.data.frame(napoleon_data)
 structure(napoleon_data)
 
-install.packages("broom")
 
-fortify(napoleon_data)
+
+
 #Using the code from the last cited website and transforming it with my data info 
 
 
@@ -278,17 +278,20 @@ ggplot(napoleon_data[["troops"]], aes(long, lat)) +
   scale_size("Survivors", range = c(1,10), #c(0.5, 15),
              breaks=breaks, labels=scales::comma(breaks)) +
   scale_color_manual("Direction",
-                     values = c("#E8CBAB", "#1F1A1B"),
+                     values = c("#6636f5", "#7a0012"),
                      labels=c("Advance", "Retreat"))
 
-plot_troops <- last_plot()
-
-plot_troops +
-  geom_point(data = napoleon_data) +
-  geom_text(data = napoleon_data, aes(label = city), vjust = 1.5)
-                
-
-
+#turn tibble into data frame so I don't get an error message 
+# The changes I made to the snip of code I got from http://euclid.psych.yorku.ca/www/psy6135/tutorials/Minard.html
+# was the colors as well as how I retreive the specfic data so the code would function. 
+# Since the data from the website was configured differently into separate parts, as opposed to 
+# how the data we were given were all together, I had to use indexing to go into the data and select
+# the specific coloumn that I wanted to use. I am still so new at using R, and the fact I didn't use it 
+# regularly over the summer, I forgot alot of the trick I picked up from my last data class. Although 
+# I was never taught any of the specific grammar of R. In that class we were given all the code in markdown 
+# and has to simily duplicate it. So going in blind like this is extrememly hard and time consuming when 
+# I am plugging and checking. I've learned so much in this class already through many stressful night and 
+# I know I will continue to learn. I just have to keep trying different ways to make the code work. 
 
 
 
