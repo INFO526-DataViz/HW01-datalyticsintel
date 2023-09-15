@@ -54,7 +54,7 @@ theme_set(theme_minimal(base_size = 11))
 
 p1 <- ggplot(accidents, aes(x = time, fill = severity)) +
   geom_density(alpha = 0.5) +
-  labs(title = "Number of acciedent throughout the day",
+  labs(title = "Number of accident throughout the day",
        x = "Time of day",
        y = "Density"
   )
@@ -67,7 +67,7 @@ x <- x[!grepl('Fatal', x$severity),]
 
 p2 <- ggplot(x, aes(x = time, fill = severity)) +
   geom_density(alpha = 0.5) +
-  labs(title = "Number of acciedent throughout the day",
+  labs(title = "Number of accident throughout the day",
        x = "Time of day",
        y = "Density"
   )
