@@ -1,32 +1,91 @@
 ---
 title: "HW 01"
 author: "Antonio Escalante Jr"
-format: 
-  html:
-    embed-resources: true
+format: html
 toc: true
 ---
 
 ## 1 - Road traffic accidents in Edinburgh
-#load librabries gglplot, here, tidyverse
+
+```{r label-me-1}
+#### 1 - Road traffic accidents in Edinburgh----
+#   Road traffic accidents in Edinburgh. Next we’ll look at traffic accidents in Edinburgh. 
+# The data are made available online by the UK Government. It covers all recorded accidents 
+# in Edinburgh in 2018 and some of the variables were modified for the purposes of this assignment.
+# The data can be found in the dsbox package, and it’s called accidents. You can find out
+# more about the dataset by inspecting its documentation with ?accidents and you can also find 
+# this information here. Recreate the following plot, and interpret in context of the data.
+
+#### Install & load packages
+#load libraries ggplot, here, tidyverse - adding pacman from live lecture 
 #install and then Load library dsbox packages called accidents
-# install.packages("accidents")
+# install.packages("pacman")
+
+
+#Accidents dataset is within dsbox package
+# install.packages("dsbox")
+# install.packages("dsbox")
+#install devtools per dsbox website
+# install.packages("devtools")
+#install github code into console to get a working dsbox installed
+#check alternative versions 
+# install.packages("gridExtra")
+
+
+library(ggpubr) 
 library(tidyverse)
- # library(accidents)
+library(glue)
+library(scales)
+library(lubridate)
+library(gridExtra)
+# gridExtra::
+#For any plots below
+# Global ggplotheme
+# theme_set(theme_pubclean(base_size = 11))
+theme_set(theme_minimal(base_size = 11))
+
+
+# library(ggplot2) #Very cool add on package I found that could be useful for the future 
+# install.packages("devtools")
+# library(devtools)
+# install_github("kassambara/easyGgplot2")
+
+
+
+p1 <- ggplot(accidents, aes(x = time, fill = severity)) +
+  geom_density(alpha = 0.5) +
+  labs(title = "Number of acciedent throughout the day",
+       x = "Time of day",
+       y = "Density"
+  )
   
-  `{r label-me-1}`
-
-## 2 - NYC marathon winners
-# Install openintro
-# install.packages("openintro")
-# load library openintro
-library(openintro)
-
-# ```{r label-me-2}
-ggplot(nyc_marathon)
+# This should take out fatality
+accidents <- as.data.frame(accidents)
+x <- accidents
+x <- x[!grepl('Fatal', x$severity),]
 
 
-`{r label-me-1}`
+p2 <- ggplot(x, aes(x = time, fill = severity)) +
+  geom_density(alpha = 0.5) +
+  labs(title = "Number of acciedent throughout the day",
+       x = "Time of day",
+       y = "Density"
+  )
+
+
+
+#I did grid arrange as faceting wasn't working 
+grid.arrange(p1, p2, nrow =2)
+
+# although in the graph example in the homework prompt I am not sure why Serious and Slight 
+# do not look the same. As in the slopes are different from the top and bottom graphs
+
+
+
+
+
+
+```
 
 ## 2 - NYC marathon winners
 
@@ -36,6 +95,8 @@ ggplot(nyc_marathon)
 
 ## 3 - US counties
 
+
 ## 4 - Rental apartments in SF
 
-## 5 - Napoleon's march.
+
+## 5 - Napoleon’s march.
