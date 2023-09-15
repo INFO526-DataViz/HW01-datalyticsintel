@@ -227,6 +227,39 @@ ggplot(county) +
 
 
 ## 4 - Rental apartments in SF
+```{r}
+## 4 - Rental apartments in SF----
+# Rental apartments in SF. The data for this exercise comes from TidyTuesday and it's on rental prices in San Francisco. 
+# You can find out more about the dataset by inspecting its documentation here. The dataset you'll be using is called rent.
+# Create a visualization that will help you compare the distribution of rental prices (price) per bedroom (beds) 
+# across neighborhoods (nhood) in the city of San Francisco (city == "san francisco"), over time. Limit your analysis
+# to rentals where the full unit is available, i.e. (room_in_apt	== 0). You have the flexibility to choose which years
+# and which neighborhoods. Note that you should have a maximum of 8 neighborhoods on your visualization, but one or more 
+# of them can be a combination of many (e.g., an "other" category). Your visualization should also display some measure 
+# of the variability in your data. You get to decide what type of visualization to create and there is more than one 
+# correct answer! In your answer, include a brief description of why you made the choices you made as well as 
+# an interpretation of the findings of how rental prices vary over time and neighborhoods in San Francisco.
+
+rent <- read.csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-07-05/rent.csv")
+filtered_rent <- rent |>
+  filter(city == "san francisco") +
+  ggplot(aes(x = nhood, 
+             y = price, 
+             group = nhood, 
+             color = years)) +
+  geom_area()+
+    labs(title = "Rentals in San Francisco",
+         x = "Area",
+         y = "Price")
+
+# structure(rent)
+
+
+```
+
+
+
+
 
 
 ## 5 - Napoleon’s march.
